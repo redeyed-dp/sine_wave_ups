@@ -46,6 +46,7 @@ TIM_HandleTypeDef htim14;
 /* USER CODE BEGIN PV */
 volatile int phase = 0;
 volatile int count = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,6 +76,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     	}
     }
 }
+
 /* USER CODE END 0 */
 
 /**
@@ -113,11 +115,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   HAL_TIM_Base_Start_IT(&htim14);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-
-
 
   while (1)
   {
@@ -185,7 +186,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 2222;
+  htim3.Init.Period = 1569;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim3) != HAL_OK)
@@ -235,7 +236,7 @@ static void MX_TIM14_Init(void)
   htim14.Instance = TIM14;
   htim14.Init.Prescaler = 0;
   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim14.Init.Period = 2222;
+  htim14.Init.Period = 1569;
   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)

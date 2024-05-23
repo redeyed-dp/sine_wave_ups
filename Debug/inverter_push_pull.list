@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_rnglists 000006d3  00000000  00000000  00029688  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  0000ebd2  00000000  00000000  00029d5b  2**0
+ 17 .debug_macro  0000ebd8  00000000  00000000  00029d5b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   000094fd  00000000  00000000  0003892d  2**0
+ 18 .debug_line   000094ff  00000000  00000000  00038933  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0005bbc9  00000000  00000000  00041e2a  2**0
+ 19 .debug_str    0005bbd8  00000000  00000000  00041e32  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00001f70  00000000  00000000  0009d9f4  2**2
+ 20 .debug_frame  00001f70  00000000  00000000  0009da0c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  0009f964  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  0009f97c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -351,11 +351,11 @@ int main(void)
  80002b8:	f000 f856 	bl	8000368 <MX_TIM3_Init>
   MX_TIM14_Init();
  80002bc:	f000 f8c0 	bl	8000440 <MX_TIM14_Init>
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  /*for (int i=0; i<QUANTS; i++){
+	  sintable[i] = 0;                 // Do it before timers start!!!
+  }*/
   HAL_TIM_Base_Start_IT(&htim14);
  80002c0:	4b07      	ldr	r3, [pc, #28]	; (80002e0 <main+0x38>)
  80002c2:	0018      	movs	r0, r3
@@ -370,7 +370,6 @@ int main(void)
  80002d4:	2104      	movs	r1, #4
  80002d6:	0018      	movs	r0, r3
  80002d8:	f001 f9c8 	bl	800166c <HAL_TIM_PWM_Start>
-
 
 
   while (1)
@@ -519,7 +518,7 @@ static void MX_TIM3_Init(void)
  8000398:	4b26      	ldr	r3, [pc, #152]	; (8000434 <MX_TIM3_Init+0xcc>)
  800039a:	2200      	movs	r2, #0
  800039c:	609a      	str	r2, [r3, #8]
-  htim3.Init.Period = 2222;
+  htim3.Init.Period = 1569;
  800039e:	4b25      	ldr	r3, [pc, #148]	; (8000434 <MX_TIM3_Init+0xcc>)
  80003a0:	4a26      	ldr	r2, [pc, #152]	; (800043c <MX_TIM3_Init+0xd4>)
  80003a2:	60da      	str	r2, [r3, #12]
@@ -618,7 +617,7 @@ static void MX_TIM3_Init(void)
  8000432:	46c0      	nop			; (mov r8, r8)
  8000434:	20000028 	.word	0x20000028
  8000438:	40000400 	.word	0x40000400
- 800043c:	000008ae 	.word	0x000008ae
+ 800043c:	00000621 	.word	0x00000621
 
 08000440 <MX_TIM14_Init>:
   * @brief TIM14 Initialization Function
@@ -646,7 +645,7 @@ static void MX_TIM14_Init(void)
  8000450:	4b0b      	ldr	r3, [pc, #44]	; (8000480 <MX_TIM14_Init+0x40>)
  8000452:	2200      	movs	r2, #0
  8000454:	609a      	str	r2, [r3, #8]
-  htim14.Init.Period = 2222;
+  htim14.Init.Period = 1569;
  8000456:	4b0a      	ldr	r3, [pc, #40]	; (8000480 <MX_TIM14_Init+0x40>)
  8000458:	4a0b      	ldr	r2, [pc, #44]	; (8000488 <MX_TIM14_Init+0x48>)
  800045a:	60da      	str	r2, [r3, #12]
@@ -679,7 +678,7 @@ static void MX_TIM14_Init(void)
  800047e:	46c0      	nop			; (mov r8, r8)
  8000480:	20000070 	.word	0x20000070
  8000484:	40002000 	.word	0x40002000
- 8000488:	000008ae 	.word	0x000008ae
+ 8000488:	00000621 	.word	0x00000621
 
 0800048c <MX_GPIO_Init>:
   * @brief GPIO Initialization Function
